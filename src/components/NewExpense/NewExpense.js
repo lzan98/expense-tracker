@@ -7,11 +7,7 @@ import { addDoc, collection } from '@firebase/firestore';
 const NewExpense = (props) => {
   const [isEditing, setIsEditing] = useState(false);
   const saveExpenseDataHandler = (enteredExpenseData) => {
-    const expenseData = {
-      ...enteredExpenseData,
-      id: Math.random.toString(),
-    };
-    props.onAddExpense(expenseData);
+    props.onAddExpense(enteredExpenseData);
     setIsEditing(false);
   };
 

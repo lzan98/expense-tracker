@@ -12,9 +12,21 @@ const Expenses = (props) => {
   const filterChangeHandler = (selectedYear) => {
     setFilteredYear(selectedYear);
   };
-  const filteredExpenses = props.items.filter(
-    (expense) => expense.date.getFullYear().toString() === filteredYear
-  );
+
+  const deleteHandler = (id) => {
+    props.onDeleteExpense(id);
+  }
+
+  const filteredExpenses = props.items
+    .map((expense) => ({
+      id: expense.id,
+      title: expense.title,
+      amount: expense.amount,
+      date: expense.date.toDate()
+    }))
+    .filter(
+      (expense) => expense.date.getFullYear().toString() === filteredYear
+    );
 
   return (
     <div>
@@ -23,8 +35,9 @@ const Expenses = (props) => {
           //selected={filteredYear}
           onChangeFilter={filterChangeHandler}
         />
-        <ExpensesChart expenses = {filteredExpenses} />
-        <ExpensesList items = {filteredExpenses}/>
+        <ExpensesChart expenses={filteredExpenses} />
+        <ExpensesList items={filteredExpenses}
+        onDeleteExpense={deleteHandler} />
       </Card>
     </div>
   );
