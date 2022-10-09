@@ -20,6 +20,7 @@ const Expenses = (props) => {
   const filteredExpenses = props.items
     .map((expense) => ({
       id: expense.id,
+      key: expense.key,
       title: expense.title,
       amount: expense.amount,
       date: expense.date.toDate()

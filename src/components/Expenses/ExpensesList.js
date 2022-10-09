@@ -15,6 +15,7 @@ const ExpensesList = (props) => {
     <ul className="expenses-list">
       {props.items.map((expense) => (
       <ExpenseItem onDeleteExpense={deleteHandler}
+        key= {expense.id}
         id={expense.id}
         title={expense.title}
         amount={expense.amount}
