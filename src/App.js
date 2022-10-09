@@ -1,6 +1,8 @@
 import Expenses from "./components/Expenses/Expenses";
 import NewExpense from "./components/NewExpense/NewExpense";
 import React, {useState} from "react";
+import { firestore } from './firebase';
+import { addDoc, collection } from '@firebase/firestore';
 
 const DUMMY_EXPENSES = [
   {
@@ -25,13 +27,15 @@ const DUMMY_EXPENSES = [
 ];
 
 const App = () => {
-  const [expenses, setExpenses] = useState(DUMMY_EXPENSES)
+  const [expenses, setExpenses] = useState(DUMMY_EXPENSES);
+  const ref = collection(firestore, "expenses");
 
   const addExpenseHandler = expense => {
-    console.log(expense);
-    setExpenses(prevExpenses => {
-      return [expense, ...prevExpenses];
-    });
+    try {
+      addDoc(ref, expense);
+    } catch (e) {
+      console.log(e);
+    }
   }
   
   return (
