@@ -27,7 +27,7 @@ const Expenses = (props) => {
     }))
     .filter(
       (expense) => new Date(expense.date).getFullYear().toString() === filteredYear
-    );
+    ).sort((a,b) => (b.date - a.date));
 
   return (
     <div>
