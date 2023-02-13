@@ -19,6 +19,7 @@ app.post("/create", async (req, res) => {
   res.send({ msg: "Expense Added" });
 });
 
+// to migrate from firebase to local PostgreSQL and change method to DELETE
 app.post("/delete", async (req, res) => {
   const id = req.body.id;
   await User.doc(id).delete();

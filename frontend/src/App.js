@@ -44,6 +44,7 @@ const App = () => {
     getExpenses();
   }
 
+  // to migrate from firebase to local PostgreSQL and change method to DELETE
   const deleteExpenseHandler = async (id) => {
     await fetch('http://localhost:4000/delete', {
       method: 'POST',
